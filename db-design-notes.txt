@@ -1,0 +1,138 @@
+class Airport
+	id
+	city
+	abbreviation
+
+
+class Flight
+	id
+	departure date
+	departure time
+	arrival date
+	arrival time
+	origin (airport)
+	destination (airport)
+	airline
+	vacant_seats
+
+	belongs_to (or is it has_one ? ) :origin, class_name: "Airport", foreign_key: airport_id
+	belongs_to (or is it has_one ? ) :destination, class_name: "Airport", foreign_key: airport_id
+	belongs_to :airline
+	has_many :passengers
+
+class Airline
+	id
+	name
+
+	has_many :flights
+
+class Passenger
+	id
+	first name
+	last name
+	email
+	birthdate
+	phone
+
+	has_many :billing_informations
+	has_many :flights (this is if we remember the passenger)
+
+class BillingInformation
+	id
+	name
+	card type
+	card number
+	card security code
+	street number
+	street name
+	city
+	state
+	zip
+
+
+Questions:
+
+How to structure flight - airport relationship?
+	- a flight has two airports, origin and destination, so probably either has_one or belongs to
+	- an airport has many flights
+		- these flights are either leaving or arriving
+	- the unique combination is origin * destination * date * time * airline
+	- airline has many flights
+	- flight has one plane
+	- plane has a certain number of seats
+
+
+May be going overboard here. Reiterating the design requirements:
+
+"A typical airline booking flow:
+
+Enter desired dates / airports and click "Search"
+Choose from among a list of eligible flights
+Enter passenger information for all passengers
+Enter billing information
+"
+
+class Airport
+	
+	name:string, presence: true
+	wac:string, presence: true, min/max: 3 char #( stands for world airport code)
+	city:string
+	state:string
+
+	has_many :departures, class_name :flight
+	has_many :arrivals, class_name :flight
+
+class Flight
+	
+	departure date:date, presence: true
+	departure time:time, presence: true
+	arrival date:date, presence: true
+	arrival time:time, presence: true
+	origin (airport_id):integer, presence: true
+	destination (airport_id):integer, presence: true
+
+	has_many :passengers, through :flight_passenger
+	has_one :origin, class_name: "Airport"
+	has_one :destination, class_name: "Airport"
+
+class Passenger
+	
+	first name:string, presence: true
+	last name:string, presence: true
+	email:email, presence: true
+	birthdate: date, presence: true
+	phone:integer (phone field?), presence: true
+
+	has_many :flights, through :flight_passenger
+	has_many :billings
+
+class FlightPassenger
+	(through table)
+
+	belongs_to :flight
+	belongs_to :passenger
+
+class Billing
+
+	(all fields required)
+	name:string, presence: true
+	card type:string, presence: true, (one of: Visa, Mastercard, Amex, Discover)
+	card number:integer, presence: true, unique: true
+	card secret code:integer, presence: true, length (min:3, max:4)
+	address
+		street number:integer
+		street name:string
+		city:string
+		state:string
+		zip:integer
+
+	belongs_to :passenger
+
+
+
+
+
+
+
+
+

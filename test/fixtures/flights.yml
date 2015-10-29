@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  departure_date: 2015-10-29
+  departure_time: 2015-10-29 17:05:56
+  arrival_date: 2015-10-29
+  arrival_time: 2015-10-29 17:05:56
+  origin: 1
+  destination: 
+
+two:
+  departure_date: 2015-10-29
+  departure_time: 2015-10-29 17:05:56
+  arrival_date: 2015-10-29
+  arrival_time: 2015-10-29 17:05:56
+  origin: 1
+  destination: 
