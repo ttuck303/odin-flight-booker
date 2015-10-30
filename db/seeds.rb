@@ -5,3 +5,18 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+path = "airport_list.txt"
+f = File.open(path, 'r')
+
+f.each do |airport|
+	Airport.create(wac: airport.match(/[A-Z]{3}/))
+end
+
+p1 = Passenger.create(first_name: 'Travis', last_name: "Tucker")
+
+a1 = Airport.first
+a2 = Airport.find(2)
+
+f1 = Flight.create(origin: a1, destination: a2)
