@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20151029231217) do
   end
 
   create_table "billings", force: :cascade do |t|
+    t.integer  "passenger_id"
     t.string   "first_name"
     t.string   "last_name"
     t.string   "card_type"
@@ -44,6 +45,8 @@ ActiveRecord::Schema.define(version: 20151029231217) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
+
+  add_index "bookings", ["passenger_id", "flight_id"], name: "index_bookings_on_passenger_id_and_flight_id", unique: true
 
   create_table "flights", force: :cascade do |t|
     t.date     "departure_date"
