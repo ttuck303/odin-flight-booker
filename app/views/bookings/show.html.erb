@@ -1,1 +1,16 @@
-<h1> Show booking here </h1>
+<h1>Booking Information</h1>
+
+<p>Flight Information:<br>
+<span>Flight #: <%= @booking.flight.id %></span><br>
+<span>From: <%= @booking.flight.origin.wac %></span><br>
+<span>To: <%= @booking.flight.destination.wac %></span><br>
+<span>On: <%= @booking.flight.departure_date %></span><br>
+<span>At: <%= @booking.flight.departure_time.strftime('%H:%m %p') %></span><br>
+</p>
+
+<p>Passenger Information:</p>
+<ul>
+	<% @booking.passengers.each do |p| %>
+		<li>Name: <%= p.first_name %> <%= p.last_name %></li>
+	<% end %>
+</ul>
