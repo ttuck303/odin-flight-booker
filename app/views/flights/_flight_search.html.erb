@@ -1,0 +1,17 @@
+<span>
+<%= form_tag root_path, method: "get" do %>
+	<div class="origin">
+		Origin: <%= select_tag(:origin, options_for_select(@airports)) %><br>
+	</div>
+	<br>
+	<div class="date">
+		Departure Date: <%= select_date(Time.now, prefix: "departure_date") %>
+	</div>
+	<br>
+	<div class="destination">
+		Destination: <%= select_tag(:destination, options_for_select(@airports)) %><br>
+	</div>
+	<br>
+	<%= submit_tag "Search" %>
+<% end %>	
+</span>

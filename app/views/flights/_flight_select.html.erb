@@ -1,0 +1,20 @@
+<div>
+	<% unless (@flights.nil? || @flights.empty?) %>
+		<%= form_tag new_booking_path, method: "get" do |f| %>
+			<ul>
+				<% @flights.each do |flight| %>
+					<li>
+						<%= radio_button_tag(:flight_id, flight.id) %>
+						<%= label_tag "Flight #{flight.id}" %>
+					</li>
+				<% end %>
+			</ul>
+				<p>
+					Number of passengers: <%= select_tag "passengers", "<option>1</option><option>2</option><option>3</option><option>4</option>".html_safe %>
+				</p>
+			<%= submit_tag "Select flight" %>
+		<% end %>
+	<% else %>
+		No flights found.
+	<% end %>
+</div>	

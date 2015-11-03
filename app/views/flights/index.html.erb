@@ -1,16 +1,5 @@
-<span>
-<%= form_for :flight do |f| %>
-	<div class="origin">
-		Origin: <%= select_tag(:origin, options_for_select(@airports)) %><br>
-		Departure Date: <%= select_date(Time.now, prefix: "departure_date") %>
-	</div>
-	<br><br>
-	<div class="destination">
-		Destination: <%= select_tag(:destination, options_for_select(@airports)) %><br>
-	</div>
-	<br><br>
-	Number of passengers: <%= select_tag "passengers", "<option>1</option><option>2</option><option>3</option><option>4</option>".html_safe %>
-	<br><br><br>
-	<%= f.submit "Search" %>
-<% end %>	
-</span>
+<h1>Flights</h1>
+<%= render 'flight_search' %>
+<br>
+<%= render 'flight_select' %>
+

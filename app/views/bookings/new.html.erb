@@ -1,0 +1,17 @@
+<h1> Booking form goes here. </h1>
+<span>From: <%= @flight.origin.wac %></span><br>
+<span>To: <%= @flight.destination.wac %></span><br>
+<span>On: <%= @flight.departure_date %></span><br>
+<span>At: <%= @flight.departure_time.strftime('%H:%m %p') %></span><br>
+<br>
+
+<%= form_for @booking do |booking_form| %>
+	<%= booking_form.hidden_field :flight_id, value: @flight.id %>
+	<tr>
+		<%= booking_form.fields_for :passengers do |passenger_fields| %>
+			<td><%= passenger_fields.label :first_name %>: <%= passenger_fields.text_field :first_name %></td>
+			<td><%= passenger_fields.label :email %>: <%= passenger_fields.email_field :email %></td>
+		<% end %>
+	</tr>
+	<%= booking_form.submit "Submit" %>
+<% end %>

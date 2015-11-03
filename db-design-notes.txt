@@ -129,6 +129,31 @@ class Billing
 	belongs_to :passenger
 
 
+----
+
+Struggling with nested forms
+The problem is that the way I have currently modeled the relationships,
+
+a passenger has multiple bookings
+and a flight has multiple passengers through bookings,
+but a booking is a 1:1 table
+
+The view that we are being told to use is supposed to create a booking for up to 4 people at a time
+This implies a 1-to-many relationship between bookings and passengers
+
+so the new data structure to accomodate this would have to be...
+1 booking, 1 flight, 1-4 passengers?
+that seems dumb
+
+
+lets just confirm that the sample answers required the dreaded data structure before continuing down the path of migrating the structure
+
+2 out of 5 do it without the 'ticket' concept, going to see what they did
+even these ones that do it without a ticket concept relate the booking model to passengers with a has_many or a has_and_belongs_to_many relationship
+
+looks like I've gotta change my models
+
+
 
 
 
